@@ -1,11 +1,14 @@
 import os, config
+from dotenv import load_dotenv
+import openai
 
 # from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader
 # new version replaces GPTSimpleVectorIndex with GPTVectorStoreIndex
 
 from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader
+load_dotenv()
 
-os.environ['OPENAI_API_KEY'] = config.OPENAI_API_KEY
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 documents = SimpleDirectoryReader('articles').load_data()
 
